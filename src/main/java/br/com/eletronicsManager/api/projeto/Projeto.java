@@ -1,5 +1,7 @@
 package br.com.eletronicsManager.api.projeto;
 //teste
+
+import br.com.eletronicsManager.api.microprocessador.Microprocessador;
 import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.Column;
@@ -7,30 +9,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "projetos", schema="public")
-public class Projeto implements Serializable{
-    
+@Table(name = "projetos", schema = "public")
+public class Projeto implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-    
+
     @Column(nullable = false)
     private String nome;
-    
+
     @Column(nullable = false)
     private String engResponsavel;
-    
+
     @Column(name = "data_inicio")
     private LocalDate dataInicio;
-    
+
     @Column(name = "data_conclusao")
     private LocalDate dataConclusao;
-    
-    @Column(nullable = false)
-    private String microprocessador;
+
+    @ManyToOne
+    @JoinColumn(name = "microprocessador")
+    private Microprocessador microprocessador;
 
     public int getId() {
         return id;
@@ -72,13 +77,12 @@ public class Projeto implements Serializable{
         this.dataConclusao = dataconclusao;
     }
 
-    public String getMicroprocessador() {
+    public Microprocessador getMicroprocessador() {
         return microprocessador;
     }
 
-    public void setMicroprocessador(String microprocessador) {
+    public void setMicroprocessador(Microprocessador microprocessador) {
         this.microprocessador = microprocessador;
     }
 
-    
 }
