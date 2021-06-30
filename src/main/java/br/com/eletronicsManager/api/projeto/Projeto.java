@@ -1,5 +1,4 @@
 package br.com.eletronicsManager.api.projeto;
-//teste
 
 import br.com.eletronicsManager.api.microprocessador.Microprocessador;
 import java.io.Serializable;

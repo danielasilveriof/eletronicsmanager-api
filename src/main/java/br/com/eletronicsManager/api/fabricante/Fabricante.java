@@ -1,17 +1,12 @@
 package br.com.eletronicsManager.api.fabricante;
 
-import br.com.eletronicsManager.api.microprocessador.Microprocessador;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -37,8 +32,26 @@ public class Fabricante implements Serializable {
     @Column(nullable = false)
     private Boolean reprBr;
 
-    @OneToMany(mappedBy = "fabricante", targetEntity = Microprocessador.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Microprocessador> microprocessadores;
+    public Fabricante(String nome, String pais, LocalDate dataFundacao, String logo, Boolean reprBr) {
+        this.nome = nome;
+        this.pais = pais;
+        this.dataFundacao = dataFundacao;
+        this.logo = logo;
+        this.reprBr = reprBr;
+    }
+
+    public Fabricante(int id, String nome, String pais, LocalDate dataFundacao, String logo, Boolean reprBr) {
+        this.id = id;
+        this.nome = nome;
+        this.pais = pais;
+        this.dataFundacao = dataFundacao;
+        this.logo = logo;
+        this.reprBr = reprBr;
+    }
+
+    public Fabricante() {
+    
+    }
 
     public String getPais() {
         return pais;
@@ -86,14 +99,6 @@ public class Fabricante implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public List<Microprocessador> getMicroprocessadores() {
-        return this.microprocessadores;
-    }
-
-    public void setMicroprocessadores(List<Microprocessador> microprocessadores) {
-        this.microprocessadores = microprocessadores;
     }
 
 }
