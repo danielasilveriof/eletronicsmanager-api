@@ -12,10 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author aula
- */
+
 @Entity
 @Table(name = "microprocessadores", schema = "public")
 public class Microprocessador implements Serializable {
